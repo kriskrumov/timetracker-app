@@ -4,7 +4,8 @@ const express               = require("express"),
       bodyParser            = require("body-parser"),
       LocalStrategy         = require("passport-local"),
       User                  = require("./models/user"),
-      passportLocalMongoose = require("passport-local-mongoose")
+      passportLocalMongoose = require("passport-local-mongoose"),
+      session = require('express-session')
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
@@ -18,7 +19,7 @@ app.use(flash());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.use(require("express-session")({
+app.use((session)({
     secret: "This is a secret message",
     resave: false,
     saveUninitialized: false
