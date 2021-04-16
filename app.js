@@ -14,6 +14,8 @@ const flash = require('connect-flash');
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
 mongoose.connect("mongodb+srv://marblezstars:go6oneaka@roommate.o1zfc.mongodb.net/roomMate?retryWrites=true&w=majority");
 
 // Consts and variables
@@ -55,7 +57,7 @@ app.get("/register", function(req, res){
 })
 
 app.post("/register", function(req, res){
-    User.register(new User({username: req.body.username}), req.body.password, function(err, user){
+    User.register(new User({username: req.body.name, email: req.body.email}), req.body.password, function(err, user){
         if(err){
             console.log(err);
             return res.render('register');
