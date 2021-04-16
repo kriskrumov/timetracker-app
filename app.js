@@ -14,7 +14,7 @@ const flash = require('connect-flash');
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
-mongoose.connect("mongodb+srv://marblezstars:go6oneaka@roommate.o1zfc.mongodb.net/roomMate?retryWrites=true&w=majority");
+mongoose.connect("mongodb+srv://kristiyankrumov96:7nz6d5CFGKXLw0lv@roommate.o1zfc.mongodb.net/roomMate?retryWrites=true&w=majority");
 
 // Consts and variables
 
