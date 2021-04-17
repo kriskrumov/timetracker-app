@@ -1,5 +1,5 @@
 // Libraries
-
+const connectDB = require('./db/db');
 const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
@@ -10,19 +10,10 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const session = require('express-session');
 const flash = require('connect-flash');
 
-// setting up mongoDB with the help of mongoose package
-
-mongoose.set('useNewUrlParser', true);
-mongoose.set('useUnifiedTopology', true);
-mongoose.set('useFindAndModify', false);
-mongoose.set('useCreateIndex', true);
-mongoose.connect("mongodb+srv://marblezstars:go6oneaka@roommate.o1zfc.mongodb.net/roomMate?retryWrites=true&w=majority");
-
 // Consts and variables
-
+connectDB();
 const app = express();
-const port = 3000;
-
+const Port = process.env.PORT || 3000;
 // Middleware
 
 app.set('view engine', 'ejs');
@@ -100,6 +91,4 @@ app.get("/home", isLoggedIn, function(req, res){
 
 // Starts server and start listening for connections on specified port
 
-app.listen(port, function(){
-    console.log("Server started......");
-})
+app.listen(Port, () => console.log('Server started'))
