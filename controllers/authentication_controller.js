@@ -23,7 +23,7 @@ exports.getLoginPage = (req,res)=>{
 }
 
 exports.logout = (req,res)=>{
-    req.logout();
+    req.logOut();
     res.redirect('/');
 }
 
@@ -34,10 +34,14 @@ exports.isLoggedIn = (req,res,next)=>{
     res.redirect("/")
 }
 
-exports.login = (req, res)=> {
+exports.login = (req, res, next)=> {
     passport.authenticate("local", {
     successRedirect: "/home",
     failureFlash: true,
     failureRedirect: "/"
-})
+}) (req,res,next);
+}
+
+exports.getHome = (req,res) => {
+    res.render("home");
 }

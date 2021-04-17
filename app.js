@@ -23,6 +23,7 @@ const householdRoute = require('./routes/household_route');
 const loginRoute = require('./routes/login_route')
 const registerRoute = require('./routes/register_route');
 const userRoute = require('./routes/user_route');
+const { isLoggedIn } = require('./controllers/authentication_controller');
 
 
 // Middleware
@@ -51,7 +52,9 @@ passport.deserializeUser(User.deserializeUser());
 //=======
 // Setting up the routes
 
-app.use('/login', loginRoute);
+app.use('/', loginRoute);
+
+app.use('/home', isLoggedIn, householdRoute);
 
 app.use('/register', registerRoute);
 
