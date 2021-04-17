@@ -21,7 +21,14 @@ mongoose.connect("mongodb+srv://marblezstars:go6oneaka@roommate.o1zfc.mongodb.ne
 // Consts and variables
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
+
+// Routes Consts 
+
+const authenticationRoute = require('./routes/authentication_route');
+const activityRoute = require('./routes/activity_route');
+const householdRoute = require('./routes/household_route');
+const userRoute = require('./routes/user_route');
 
 // Middleware
 
@@ -47,11 +54,13 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 //=======
-// ROUTES
+// Setting up the routes
+
+app.use("/auth", authenticationRoute);
 
 
 // AUTHENTICATION ROUTES
-
+/*
 app.get("/register", function(req, res){
     res.render("register");
 })
@@ -75,7 +84,7 @@ app.get("/", function(req, res){
 })
 
 // Login logic
-app.post("/",passport.authenticate("local", {
+app.post("/", passport.authenticate("local", {
     successRedirect: "/home",
     failureFlash: true,
     failureRedirect: "/"
@@ -98,8 +107,10 @@ app.get("/home", isLoggedIn, function(req, res){
     res.render("home");
 })
 
+*/
+
 // Starts server and start listening for connections on specified port
 
 app.listen(port, function(){
-    console.log("Server started......");
+    console.log("Server started...visit http://localhost:"+port);
 })
