@@ -13,7 +13,18 @@ const flash = require('connect-flash');
 // Consts and variables
 connectDB();
 const app = express();
-const Port = process.env.PORT || 3000;
+
+const port = process.env.PORT || 3000;
+
+// Routes Consts 
+
+const activityRoute = require('./routes/activity_route');
+const householdRoute = require('./routes/household_route');
+const loginRoute = require('./routes/login_route')
+const registerRoute = require('./routes/register_route');
+const userRoute = require('./routes/user_route');
+
+
 // Middleware
 
 app.set('view engine', 'ejs');
@@ -38,11 +49,15 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 //=======
-// ROUTES
+// Setting up the routes
+
+app.use('/login', loginRoute);
+
+app.use('/register', registerRoute);
 
 
 // AUTHENTICATION ROUTES
-
+/*
 app.get("/register", function(req, res){
     res.render("register");
 })
@@ -66,7 +81,7 @@ app.get("/", function(req, res){
 })
 
 // Login logic
-app.post("/",passport.authenticate("local", {
+app.post("/", passport.authenticate("local", {
     successRedirect: "/home",
     failureFlash: true,
     failureRedirect: "/"
@@ -89,6 +104,12 @@ app.get("/home", isLoggedIn, function(req, res){
     res.render("home");
 })
 
+*/
+
 // Starts server and start listening for connections on specified port
 
-app.listen(Port, () => console.log('Server started'))
+
+app.listen(port, function(){
+    console.log("Server started...visit http://localhost:"+port);
+})
+
