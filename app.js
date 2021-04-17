@@ -25,9 +25,10 @@ const port = process.env.PORT || 3000;
 
 // Routes Consts 
 
-const authenticationRoute = require('./routes/authentication_route');
 const activityRoute = require('./routes/activity_route');
 const householdRoute = require('./routes/household_route');
+const loginRoute = require('./routes/login_route')
+const registerRoute = require('./routes/register_route');
 const userRoute = require('./routes/user_route');
 
 // Middleware
@@ -56,7 +57,9 @@ passport.deserializeUser(User.deserializeUser());
 //=======
 // Setting up the routes
 
-app.use("/auth", authenticationRoute);
+app.use('/login', loginRoute);
+
+app.use('/register', registerRoute);
 
 
 // AUTHENTICATION ROUTES

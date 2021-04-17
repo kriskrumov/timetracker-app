@@ -6,7 +6,7 @@ exports.getRegisterPage = (req,res)=>{
 }
 
 exports.register = (req,res)=>{
-    User.register(new User({username: req.body.name, email: req.body.email}), req.body.password, function(err, user){
+    User.register(new User({username: req.body.username, email: req.body.email, name: req.body.name}), req.body.password, function(err, user){
         if(err){
             console.log(err);
             return res.render('register');
@@ -36,8 +36,8 @@ exports.isLoggedIn = (req,res,next)=>{
 
 exports.login = (req, res)=> {
     passport.authenticate("local", {
-        successRedirect: "/home",
-        failureFlash: true,
-        failureRedirect: "/"
-    })
+    successRedirect: "/home",
+    failureFlash: true,
+    failureRedirect: "/"
+})
 }
