@@ -6,4 +6,4 @@ const HouseholdSchema = new mongoose.Schema({
     address: String
 });
 
-module.exports = mongoose.Model('Household', HouseholdSchema);
+module.exports = mongoose.model('household', HouseholdSchema);
