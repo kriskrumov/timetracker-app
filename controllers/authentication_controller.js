@@ -25,13 +25,14 @@ exports.getLoginPage = (req,res)=>{
 exports.logout = (req,res)=>{
     req.logOut();
     res.redirect('/');
+    console.log('u just logged out broda')
 }
 
 exports.isLoggedIn = (req,res,next)=>{
     if(req.isAuthenticated()){
         return next();
     }
-    res.redirect("/")
+    return res.redirect("/")
 }
 
 exports.login = (req, res, next)=> {
@@ -39,7 +40,7 @@ exports.login = (req, res, next)=> {
     successRedirect: "/home",
     failureFlash: true,
     failureRedirect: "/"
-}) (req,res,next);
+}) (req,res,next)
 }
 
 exports.getHome = (req,res) => {
