@@ -21,6 +21,8 @@ exports.createHousehold = (req,res) => {
     var household = new Household({
         _id: new mongoose.Types.ObjectId,
         address: req.body.address,
+        city: req.body.city,
+        postcode: req.body.postcode,
         userID: currentUser
     })
 
@@ -32,10 +34,13 @@ exports.createHousehold = (req,res) => {
         const result = {
             ID: doc._id,
             address: doc.address,
+            city: doc.city,
+            postcode: doc.postcode,
             userID: doc.userID
         }
         
-        return console.log('successfully created! Result: ',result)
+        return res.redirect("/home")
+        
     })
     .catch((err)=>{
         if(err){
