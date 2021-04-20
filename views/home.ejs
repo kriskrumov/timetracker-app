@@ -3,15 +3,18 @@
 <label>Create a household?</label>
 <form action="/home" method="POST">
     <input type="text" name="address" placeholder="Address"></input>
+    <input type="text" name="city" placeholder="City"></input>
+    <input type="text" name="postcode" placeholder="Postcode"></input>
     <button>Create</button>
 </form>
 
 <main>
+    <h1>Current HouseHold</h1>
     <% households.forEach(function(household){ %>
         <div class="householdContainer">
-            <div>
-                <h4 id="householdName"><%= household.address %></h4>
-            </div>
+                <h4 style="display: inline;"  id="householdName"><%= household.address %></h4>
+                <h4 style="display: inline;" id="householdName"><%= household.city %></h4>
+                <h4 style="display: inline;" id="householdName"><%= household.postcode %></h4>
         </div>
     <% }) %>
 </main>
