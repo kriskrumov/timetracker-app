@@ -8,16 +8,33 @@
     <button>Create</button>
 </form>
 
-<main>
-    <h1>Current HouseHold</h1>
-    <% households.forEach(function(household){ %>
-        <div class="householdContainer">
-                <h4 style="display: inline;"  id="householdName"><%= household.address %></h4>
-                <h4 style="display: inline;" id="householdName"><%= household.city %></h4>
-                <h4 style="display: inline;" id="householdName"><%= household.postcode %></h4>
-        </div>
-    <% }) %>
-</main>
+<div>
+    <select>
+        <option>Select Existing Address</option>
+        <% households.forEach(function(household){ %>
+            <option><%= household.address %></option>
+       <% }) %>
+    </select>
+</div>
+
+
+<div>
+    <main>
+        <% households.forEach(function(household){ %>
+            <div class="householdContainer">
+                    <h4 style="display: inline;"  id="householdName"><%= household.address %>, </h4>
+                    <h4 style="display: inline;" id="householdName"><%= household.city %>, </h4>
+                    <h4 style="display: inline;" id="householdName"><%= household.postcode %></h4>
+            </div>
+        <% }) %>
+    </main>
+
+</div>
+
+<a href="/home/getall">
+    <p>Get all households?</p>
+</a>
+
 
 
 <li><a href="/logout">Logout</a></li>
