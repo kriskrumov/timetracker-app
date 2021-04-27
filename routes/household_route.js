@@ -13,7 +13,11 @@ router.get("/getall", householdController.getAllHouseholds);
 
 // get all household for user
 
-router.get("/households", householdController.getAllHouseholdPerUser);
+router.get("/households", householdController.getAllHouseholdsPerUser);
+
+// get all households a user is NOT a part of
+
+router.get('/nehouseholds', householdController.getAllNEHouseholdsPerUser);
 
 // create household
 

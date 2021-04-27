@@ -12,7 +12,7 @@
     <select>
         <option>Select Existing Address</option>
         <% households.forEach(function(household){ %>
-            <option><%= household.address %></option>
+            <option><%= household.address%>, <%= household.city %></option>
        <% }) %>
     </select>
 </div>
@@ -35,6 +35,9 @@
     <p>Get all households?</p>
 </a>
 
+<a href="/profile">
+    <p>View your profile</p>
+</a>
 
 
 <li><a href="/logout">Logout</a></li>

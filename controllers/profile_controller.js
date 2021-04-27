@@ -3,3 +3,8 @@ exports.getProfilePage = (req,res)=>{
     console.log("CURRENT USER PROFILE PAGE: ", currentUser);
     res.render('profile', {currentUser: req.user});
 }
+
+exports.updateProfile = (req,res)=>{
+    
+}
+

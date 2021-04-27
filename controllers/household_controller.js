@@ -4,20 +4,14 @@ const mongoose = require('mongoose');
 // Gets the homepage for the currently logged in user
 
 exports.getHome = (req,res) => {
-    console.log("current user ID: ", req.user._id)
-    const currentUser = req.user._id;
-    Household.find({'userID' : req.user._id}, function(err, houseHold){
+    const currentUserID = req.user._id;
+    console.log("current user ID: ", currentUserID)
+    Household.find({'userID' : currentUserID}, function(err, houseHold){
         if(err){
             console.log(err);
         } else {
             res.render("home", {currentUser: req.user, households: houseHold});
             console.log("household: ",houseHold);
-        }
-    })
-    Household.find('households address city postcode')
-    .then(docs=>{
-        const response = {
-            
         }
     })
 }
@@ -46,9 +40,7 @@ exports.createHousehold = (req,res) => {
             postcode: doc.postcode,
             userID: doc.userID
         }
-        
         return res.redirect("/home")
-        
     })
     .catch((err)=>{
         if(err){
@@ -83,16 +75,17 @@ exports.getAllHouseholds = (req,res)=>{
     })
 }
 
-// get all households per user
+// get all households a user created
 
-exports.getAllHouseholdPerUser = (req,res) =>{
-    const currentUser = req.user._id;
-    Household.find({'userID': currentUser}) 
+exports.getAllHouseholdsPerUser = (req,res) =>{
+    const currentUser = req.user;
+    console.log('current user')
+    Household.find({'userID': currentUser._id}) 
     .select()
     .then(docs=>{
-        console.log("Currently logged user ID: ", currentUser)
+        console.log("Currently logged user ID: ", currentUser._id)
         const response = {
-            housholds: docs.map(doc=>{
+            NEhouseholds: docs.map(doc=>{
                 const result = {
                     HouseholdID: doc._id,
                     address: doc.address,
@@ -100,10 +93,43 @@ exports.getAllHouseholdPerUser = (req,res) =>{
                     postcode: doc.postcode,
                     userID: doc.userID
                 }
-                console.log('households per user with id: ',currentUser, ' household data: ' , result);
+                console.log('household data which '+currentUser.username+' is NOT a part of: ' , result);
             })
         }
         return res.redirect('/profile')
+    })
+    .catch((err)=>{
+        if(err){
+            console.log('error message: ', err)
+            return console.log('couldnt get all household per user with ID: ', currentUser)
+        }
+    })
+}
+
+// get all households the logged in user is NOT a part of
+
+exports.getAllNEHouseholdsPerUser = (req,res) =>{
+    const currentUser = req.user;
+    console.log('current user')
+    Household.find({'userID': {$ne: currentUser._id}}) 
+    .select()
+    .then(docs=>{
+        var notexistinghouseholds = [];
+        console.log("Currently logged user ID: ", currentUser._id)
+        const response = {
+            NEhouseholds: docs.map(doc=>{
+                const result = {
+                    HouseholdID: doc._id,
+                    address: doc.address,
+                    city: doc.city,
+                    postcode: doc.postcode,
+                    userID: doc.userID
+                }
+                notexistinghouseholds.push(result);
+                console.log('household data which '+currentUser.username+' is NOT a part of: ' , result);
+            })
+        }
+        res.send(notexistinghouseholds);
     })
     .catch((err)=>{
         if(err){
