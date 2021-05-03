@@ -13,6 +13,7 @@ exports.register = (req,res)=>{
         }
         passport.authenticate("local")(req, res, function(){
             res.redirect("/home");
+            console.log("registete user: ", user);
         })
     });
 }
