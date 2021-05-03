@@ -20,6 +20,7 @@ router.get("/households", householdController.getAllHouseholdsPerUser);
 
 router.get('/nehouseholds', householdController.getAllNEHouseholdsPerUser);
 
+
 // create household
 
 router.post("/", householdController.createHousehold);
