@@ -15,13 +15,6 @@ exports.getHome = (req,res) => {
             console.log("household: ",houseHold);
         }
     })
-    // Household.find({userID : {$ne : req.user._id}}, function(err, allHouseholds){
-    //     if(err){
-    //         console.log(err);
-    //     } else {
-    //         res.render("home", {getAllHouseholds: allHouseholds})
-    //     }
-    // })
 }
 
 exports.getAddressPage = (req, res) => {
