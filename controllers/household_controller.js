@@ -1,5 +1,6 @@
 const Household = require('../models/household')
 const mongoose = require('mongoose');
+const User = require('../models/user');
 
 // Gets the homepage for the currently logged in user
 
@@ -12,6 +13,25 @@ exports.getHome = (req,res) => {
         } else {
             res.render("home", {currentUser: req.user, households: houseHold});
             console.log("household: ",houseHold);
+        }
+    })
+    // Household.find({userID : {$ne : req.user._id}}, function(err, allHouseholds){
+    //     if(err){
+    //         console.log(err);
+    //     } else {
+    //         res.render("home", {getAllHouseholds: allHouseholds})
+    //     }
+    // })
+}
+
+exports.getAddressPage = (req, res) => {
+    Household.findById(req.params.id).exec(function(err, foundAddress){
+        if(err){
+            console.log(err);
+        } else {
+            console.log(foundAddress)
+            // res.send(req.params.id)
+            res.render("addresspage", {house: foundAddress});
         }
     })
 }

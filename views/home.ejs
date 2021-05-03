@@ -7,7 +7,6 @@
     <input type="text" name="postcode" placeholder="Postcode"></input>
     <button>Create</button>
 </form>
-
 <div>
     <select>
         <option>Select Existing Address</option>
@@ -30,6 +29,23 @@
     </main>
 
 </div>
+
+<main>
+    <h1>Current HouseHold</h1>
+    <% households.forEach(function(household){ %>
+        <a href="">
+        <div class="householdContainer">
+                <h4 style="display: inline;"  id="householdName"><%= household.address %></h4>
+                <h4 style="display: inline;" id="householdName"><%= household.city %></h4>
+                <h4 style="display: inline;" id="householdName"><%= household.postcode %></h4>
+                <form id="openAddress" action="/home/<%= household._id %>">
+                    <button>Open</button>
+                </form>
+        </div>
+        </a>
+    <% }) %>
+    
+</main>
 
 <a href="/home/getall">
     <p>Get all households?</p>
