@@ -11,12 +11,18 @@
 <main>
     <h1>Current HouseHold</h1>
     <% households.forEach(function(household){ %>
+        <a href="">
         <div class="householdContainer">
                 <h4 style="display: inline;"  id="householdName"><%= household.address %></h4>
                 <h4 style="display: inline;" id="householdName"><%= household.city %></h4>
                 <h4 style="display: inline;" id="householdName"><%= household.postcode %></h4>
+                <form id="openAddress" action="/home/<%= household._id %>">
+                    <button>Open</button>
+                </form>
         </div>
+        </a>
     <% }) %>
+    
 </main>
 
 
