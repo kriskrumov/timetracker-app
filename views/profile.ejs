@@ -1,3 +1,11 @@
 <h1>Hi, <%= currentUser.username%></h1>
 
 <h2>These are your current registered households:</h2>
+
+<% usersHousehold.forEach(function(household){ %>
+    <div class="householdContainer">
+            <h4 style="display: inline;"  id="householdName"><%= household.address %>, </h4>
+            <h4 style="display: inline;" id="householdName"><%= household.city %>, </h4>
+            <h4 style="display: inline;" id="householdName"><%= household.postcode %></h4>
+    </div>
+<% }) %>

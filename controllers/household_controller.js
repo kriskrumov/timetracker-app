@@ -7,11 +7,23 @@ const User = require('../models/user');
 exports.getHome = (req,res) => {
     const currentUserID = req.user._id;
     console.log("current user ID: ", currentUserID)
-    Household.find({'userID' : currentUserID}, function(err, houseHold){
+    Household.find({userID : {$ne : currentUserID}} , function(err, houseHold){
         if(err){
             console.log(err);
         } else {
             res.render("home", {currentUser: req.user, households: houseHold});
+            console.log("household: ",houseHold);
+        }
+    })
+}
+
+exports.getUserAddresPage = (req,res) => {
+    const currentUserId = req.user._id;
+    Household.find({"userID" : currentUserId} , function(err, houseHold){
+        if(err){
+            console.log(err);
+        } else {
+            res.render("profile", {currentUser: req.user, usersHousehold: houseHold});
             console.log("household: ",houseHold);
         }
     })
@@ -142,6 +154,7 @@ exports.getAllNEHouseholdsPerUser = (req,res) =>{
                 console.log('household data which '+currentUser.username+' is NOT a part of: ' , result);
             })
         }
+        res.render("home", {allHouses: doc})
         res.send(notexistinghouseholds);
     })
     .catch((err)=>{
