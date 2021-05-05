@@ -1,2 +1,9 @@
 <h1><%= house.address %></h1>
 <h1><%= house.userID %></h1>
+
+
+<div>
+    <form action="/home/<%= house._id %>?_method=PUT" method="POST">
+        <button>Join</button>
+    </form>
+</div>
