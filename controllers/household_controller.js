@@ -20,14 +20,26 @@ exports.getHome = (req,res) => {
 exports.joinHouseHold = (req,res) => {
     const currentAddress = req.params.id;
     const currentUser = req.user;
-    Household.findById(req.params.id).populate('userID').exec(function(err, newUser){
-        newUser.userID.push(currentUser)
-        newUser.save();
-        console.log("Idto na addresa " + currentAddress)
-        console.log("Obekta " + newUser)
-        console.log("Lognatiq user e " + currentUser)
-    })
+   // const currentUsername = req.user.username;
+     Household.findById(req.params.id).populate('userID')
+     .populate('username')
+     .exec(function(err, newUser){
+         if(err){
+            console.log("inasg hregshak: ", err)
+         }  
+        else{
+            console.log('DURRENT USERBAE: ', currentUser.username);
+
+            newUser.userID.push(currentUser._id), 
+            newUser.username.push(currentUser.username)
+            newUser.save();
+            console.log("Idto na addresa " + currentAddress)
+            console.log("Obekta " + newUser)
+            console.log("Lognatiq user e " + currentUser)
+        }
+    });
 }
+
 
 exports.getUserAddresPage = (req,res) => {
     const currentUserId = req.user._id;
@@ -43,13 +55,13 @@ exports.getUserAddresPage = (req,res) => {
 }
 
 exports.getAddressPage = (req, res) => {
+    
     Household.findById(req.params.id).exec(function(err, foundAddress){
         if(err){
             console.log(err);
         } else {
-            console.log(foundAddress._id)
+            console.log("Dedavvvvvvvv" + foundAddress)
             // res.send(req.params.id)
-            console.log("KAKVOOOO EEE TAAAAVAAA" + addressUsers)
             res.render("addresspage", {house: foundAddress});
         }
     })
@@ -58,13 +70,15 @@ exports.getAddressPage = (req, res) => {
 // creates a new household
 
 exports.createHousehold = (req,res) => {
+    const user = req.user;
     const currentUser = req.user._id;
     var household = new Household({
         _id: new mongoose.Types.ObjectId,
         address: req.body.address,
         city: req.body.city,
         postcode: req.body.postcode,
-        userID: currentUser
+        userID: currentUser,
+        username: req.user.username
     })
 
     console.log('debugging the object', JSON.stringify(household))
@@ -77,7 +91,8 @@ exports.createHousehold = (req,res) => {
             address: doc.address,
             city: doc.city,
             postcode: doc.postcode,
-            userID: doc.userID
+            userID: doc.userID,
+            username: req.user.username
         }
         return res.redirect("/home")
     })
