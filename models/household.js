@@ -6,10 +6,11 @@ const HouseholdSchema = new mongoose.Schema({
     address: String,
     city: String,
     postcode: String,
-    userID: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    }
+    userID: [{type:mongoose.Schema.Types.ObjectId , ref : 'User'}]
+    // userID: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'User'
+    // }
 });
 
 module.exports = mongoose.model('household', HouseholdSchema);
