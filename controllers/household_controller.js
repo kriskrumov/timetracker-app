@@ -17,14 +17,27 @@ exports.getHome = (req,res) => {
     })
 }
 
+exports.joinHouseHold = (req,res) => {
+    const currentAddress = req.params.id;
+    const currentUser = req.user;
+    Household.findById(req.params.id).populate('userID').exec(function(err, newUser){
+        newUser.userID.push(currentUser)
+        newUser.save();
+        console.log("Idto na addresa " + currentAddress)
+        console.log("Obekta " + newUser)
+        console.log("Lognatiq user e " + currentUser)
+    })
+}
+
 exports.getUserAddresPage = (req,res) => {
     const currentUserId = req.user._id;
+    const currentUser = req.user.address;
     Household.find({"userID" : currentUserId} , function(err, houseHold){
         if(err){
             console.log(err);
         } else {
             res.render("profile", {currentUser: req.user, usersHousehold: houseHold});
-            console.log("household: ",houseHold);
+            console.log("household: ", houseHold);
         }
     })
 }
@@ -34,8 +47,9 @@ exports.getAddressPage = (req, res) => {
         if(err){
             console.log(err);
         } else {
-            console.log(foundAddress)
+            console.log(foundAddress._id)
             // res.send(req.params.id)
+            console.log("KAKVOOOO EEE TAAAAVAAA" + addressUsers)
             res.render("addresspage", {house: foundAddress});
         }
     })
