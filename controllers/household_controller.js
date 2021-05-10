@@ -233,8 +233,8 @@ exports.createActivity = (req, res) => {
         _id: new mongoose.Types.ObjectId,
         title: req.body.title,
         description: req.body.description,
-        startDate: new Date().toString(),
-        endDate: req.body.enddate,
+        startDate: new Date().toISOString().replace('T',' ').replace('Z', '').replace(/(.*)\D\d+/, '$1').replace(/(.*)\D\d+/, '$1'),
+        endDate: req.body.enddate.replace('T', ' '),
         userID: currentUser,
         householdID: house
     })
