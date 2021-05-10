@@ -2,6 +2,7 @@ const Household = require('../models/household')
 const Activity = require('../models/activity')
 const mongoose = require('mongoose');
 const User = require('../models/user');
+const { response } = require('express');
 
 // Gets the homepage for the currently logged in user
 
@@ -57,14 +58,36 @@ exports.getUserAddresPage = (req,res) => {
 }
 
 exports.getAddressPage = (req, res) => {
-    
-    Household.findById(req.params.id).exec(function(err, foundAddress){
+    const household_id = req.params.id;
+    Household.findById(household_id).exec(function(err, foundAddress){
         if(err){
             console.log(err);
         } else {
-            console.log("Dedavvvvvvvv" + foundAddress)
-            // res.send(req.params.id)
-            res.render("addresspage", {house: foundAddress});
+            var allActivities = [];
+            Activity.find({'householdID': household_id})
+            .select()
+            .then(docs=>{
+                const response = {
+                    householdActivities: docs.map(doc=>{
+                        const result = {
+                        ActivityID: doc._id,
+                        userID: doc.userID,
+                        title: doc.title,
+                        description: doc.description,
+                        startDate: doc.startDate,
+                        endDate: doc.endDate,
+                        householdID: doc.householdID
+                    }
+                    allActivities.push(result);
+                })
+                }
+                console.log('ALL HOUSEHOLD ACTIVITIES:   ', allActivities);
+                return res.render("addresspage", {house: foundAddress, activities: allActivities});
+            })
+            .catch((err)=>{
+                console.log('big problems: ', err)
+            })
+            console.log('ALL HOUSEHOLD ACTIVITIES:   ', response);
         }
     })
 }
@@ -199,24 +222,26 @@ exports.getAllNEHouseholdsPerUser = (req,res) =>{
 exports.getActivityPage = (req, res) => {
     const address = req.params.id;
     const currentUser = req.user;
-    res.render("activity", {user: currentUser, house: address});
+    return res.render("activity", {user: currentUser, house: address});
 }
 
 exports.createActivity = (req, res) => {
     const user = req.user;
-    const house = req.user;
+    const house = req.params.id;
     const currentUser = req.user._id;
     var activity = new Activity({
         _id: new mongoose.Types.ObjectId,
         title: req.body.title,
         description: req.body.description,
+        startDate: new Date().toString(),
+        endDate: req.body.enddate,
         userID: currentUser,
         householdID: house
     })
 
-    console.log("HHOUSE " + house)
-    console.log("USERAA " + user)
-    console.log('debugging the object', JSON.stringify(activity))
+    console.log("HHOUSE: " + house)
+    console.log("USERAA: " + user)
+    console.log('debugging the object: ', JSON.stringify(activity))
 
     activity
     .save()
@@ -225,6 +250,7 @@ exports.createActivity = (req, res) => {
             ID: doc._id,
             title: doc.title,
             description: doc.description,
+            startDate: doc.startDate,
             userID: doc.userID,
             householdID: doc.householdID
         }

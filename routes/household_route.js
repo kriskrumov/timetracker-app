@@ -20,13 +20,17 @@ router.get("/households", householdController.getAllHouseholdsPerUser);
 
 router.get('/nehouseholds', householdController.getAllNEHouseholdsPerUser);
 
-
 // create household
 
 router.post("/", householdController.createHousehold);
 
-router.get("/:id", householdController.getAddressPage)
+router.get("/:id", householdController.getAddressPage);
 
-router.post('/:id/activities', householdController.joinHouseHold)
+router.post('/:id', householdController.joinHouseHold);
+
+router.get('/:id/activities', householdController.getActivityPage);
+
+router.post('/:id/activities', householdController.createActivity);
+
 
 module.exports = router;
