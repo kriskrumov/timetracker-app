@@ -15,7 +15,7 @@ const flash = require('connect-flash');
 connectDB();
 const app = express();
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3003;
 
 // Routes Consts 
 
@@ -65,7 +65,7 @@ app.use('/logout', logoutRoute);
 
 app.use('/profile', profileRoute);
 
-app.use('/:id', activityRoute);
+//app.use('/:id', activityRoute);
 
 
 // Starts server and start listening for connections on specified port
