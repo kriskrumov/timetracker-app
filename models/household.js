@@ -7,7 +7,8 @@ const HouseholdSchema = new mongoose.Schema({
     city: String,
     postcode: String,
     userID: [{type:mongoose.Schema.Types.ObjectId , ref : 'User'}],
-    username: [String]
+    username: [String],
+    activities:[{type:mongoose.Schema.Types.ObjectId , ref: "activity" }]
     
     // userID: {
     //     type: mongoose.Schema.Types.ObjectId,
