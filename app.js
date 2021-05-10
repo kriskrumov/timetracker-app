@@ -63,7 +63,9 @@ app.use('/register', registerRoute);
 
 app.use('/logout', logoutRoute);
 
-app.use('/profile', profileRoute)
+app.use('/profile', profileRoute);
+
+app.use('/:id', activityRoute);
 
 
 // Starts server and start listening for connections on specified port

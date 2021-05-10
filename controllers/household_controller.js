@@ -1,4 +1,5 @@
 const Household = require('../models/household')
+const Activity = require('../models/activity')
 const mongoose = require('mongoose');
 const User = require('../models/user');
 
@@ -20,11 +21,13 @@ exports.getHome = (req,res) => {
 exports.joinHouseHold = (req,res) => {
     const currentAddress = req.params.id;
     const currentUser = req.user;
-   // const currentUsername = req.user.username;
-     Household.findById(req.params.id).populate('userID')
-     .populate('username')
+   // const currentUsername = req.user.username; 
+    Household.findById(req.params.id).populate('userID')
+     
      .exec(function(err, newUser){
          if(err){
+             console.log("ADDDDDDDDDDRESA" + currentAddress)
+             console.log("USERAAAAAAA" + currentUser._id)
             console.log("inasg hregshak: ", err)
          }  
         else{
@@ -39,7 +42,6 @@ exports.joinHouseHold = (req,res) => {
         }
     });
 }
-
 
 exports.getUserAddresPage = (req,res) => {
     const currentUserId = req.user._id;
@@ -192,4 +194,46 @@ exports.getAllNEHouseholdsPerUser = (req,res) =>{
             return console.log('couldnt get all household per user with ID: ', currentUser)
         }
     })
+}
+
+exports.getActivityPage = (req, res) => {
+    const address = req.params.id;
+    const currentUser = req.user;
+    res.render("activity", {user: currentUser, house: address});
+}
+
+exports.createActivity = (req, res) => {
+    const user = req.user;
+    const house = req.user;
+    const currentUser = req.user._id;
+    var activity = new Activity({
+        _id: new mongoose.Types.ObjectId,
+        title: req.body.title,
+        description: req.body.description,
+        userID: currentUser,
+        householdID: house
+    })
+
+    console.log("HHOUSE " + house)
+    console.log("USERAA " + user)
+    console.log('debugging the object', JSON.stringify(activity))
+
+    activity
+    .save()
+    .then(doc=>{
+        const result = {
+            ID: doc._id,
+            title: doc.title,
+            description: doc.description,
+            userID: doc.userID,
+            householdID: doc.householdID
+        }
+        return res.redirect("/home")
+    })
+    .catch((err)=>{
+        if(err){
+            return console.log('activity couldnt be added. Error message: ', err)
+        }
+    })
+    
 }
