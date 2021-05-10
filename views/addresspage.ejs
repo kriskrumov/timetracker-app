@@ -9,6 +9,19 @@
 </div>
 
 <div>
+    <% activities.forEach(function(activity){ %>
+        <h4>Title: <%= activity.title %>,</h4>
+        <h4>Description: <%= activity.description %></h4>
+        <h4>StartTime: <%= activity.startDate %></h4>
+        <h4>EndTime: <%= activity.endDate %></h4>
+        <h4>UserID: <%= activity.userID %></h4>
+        <h4>HouseholdID: <%= activity.householdID %></h4>
+        
+
+    <% }) %>
+</div>
+
+<div>
       <a href="/home/<%= house._id %>/activities">Add activity</a>
 </div>
 
