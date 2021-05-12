@@ -1,14 +1,13 @@
 // Libraries
 const connectDB = require('./db/db');
 const express = require("express");
-const mongoose = require("mongoose");
 const passport = require("passport");
 const bodyParser = require("body-parser");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user");
-const passportLocalMongoose = require("passport-local-mongoose");
 const session = require('express-session');
 const flash = require('connect-flash');
+const morgan = require('morgan')
 
 
 // Consts and variables
@@ -30,7 +29,7 @@ const { isLoggedIn } = require('./controllers/authentication_controller');
 
 
 // Middleware
-
+app.use(morgan('dev'))
 app.set('view engine', 'ejs');
 app.use(flash());
 app.use(bodyParser.urlencoded({
