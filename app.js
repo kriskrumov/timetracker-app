@@ -29,7 +29,7 @@ const { isLoggedIn } = require('./controllers/authentication_controller');
 
 
 // Middleware
-
+app.use("/styles", express.static(__dirname + "/styles"));
 app.use(morgan('dev'))
 app.set('view engine', 'ejs');
 app.use(flash());

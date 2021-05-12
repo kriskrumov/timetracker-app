@@ -1,0 +1,31 @@
+// LOGIN PAGE
+.loginForm {
+  text-align: center;
+  background: white;
+  width: 300px;
+  margin: 1% auto 0 auto;
+  padding: 20px 20px 20px 20px;
+  border-radius: 33px;
+}
+
+.loginForm,
+button {
+  font-size: 16px;
+  background-color: #dad8d8;
+  border-radius: 8px;
+  display: block;
+  margin: 10px auto 5px auto;
+}
+
+#projectName {
+  text-align: center;
+  font-size: 3em;
+  color: #1b1b1b;
+  margin-top: 10%;
+}
+
+#regLink {
+  text-align: center;
+}
+
+// REGISTER PAGE

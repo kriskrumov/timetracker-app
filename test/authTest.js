@@ -7,7 +7,7 @@ const expect = chai.expect;
 const should = chai.should();
 chai.use(chaiHttp); 
 
-describe("api router", ()=>{
+describe("register", ()=>{
     var testUser;
 
     beforeEach(()=>{
@@ -18,13 +18,14 @@ describe("api router", ()=>{
             email: "mochatestmail@gmail.com"
         })
     })
-    describe("register()", ()=>{
+    describe("register()", (done)=>{
         it('should post a new user', (done)=>{
             chai.request(app)
             .post('/register')
             .set('content-type', 'application/json')
             .send(testUser)
             .end((err, res)=>{
+                testUser.save(done)
                 res.should.have.status(200);
                 should.not.exist(testUser.group_id);
                 done();

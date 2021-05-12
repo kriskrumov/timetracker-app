@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "sass": "node-sass styles/scss/main.scss styles/css/style.css -w",
     "start": "nodemon app.js",
     "test": "mocha"
   },
@@ -25,7 +26,11 @@
   },
   "devDependencies": {
     "chai": "^4.3.4",
+    "grunt": "^1.4.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-sass": "^3.1.0",
     "mocha": "^8.3.2",
+    "node-sass": "^6.0.0",
     "nodemon": "^2.0.7"
   },
   "engines": {
