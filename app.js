@@ -10,6 +10,7 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const morgan = require('morgan');
 
+
 // Consts and variables
 
 connectDB();
@@ -28,8 +29,8 @@ const { isLoggedIn } = require('./controllers/authentication_controller');
 
 
 // Middleware
-
-app.use(morgan('dev'));
+app.use("/styles", express.static(__dirname + "/styles"));
+app.use(morgan('dev'))
 app.set('view engine', 'ejs');
 app.use(flash());
 app.use(bodyParser.urlencoded({
