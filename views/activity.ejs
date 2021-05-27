@@ -5,22 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/smoothness/jquery-ui.css" media="all">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+    <title>Add Activity</title>
     <link rel="stylesheet" type="text/css" href="../styles/css/style.css"/>
 </head>
 <body>
-    <div>
-        <form action="/home/<%= house %>/activities" method="POST">
-            <h1>Add activity</h1>
-            <input type="text" name="title" placeholder="Title"></input>
-            <input type="text" name="description" placeholder="Description"></input>
-            <input type="datetime-local" name="enddate"/>
-            <button>Post</button>
-        </form>
-    </div>
-    <h1><%= user.username %></h1>
+    <form action="/home/<%= house %>/activities" method="POST">
+        <input type="text" name="title" placeholder="Title"></input>
+        <input type="text" name="description" placeholder="Description"></input>
+        <input type="datetime-local" name="enddate"/>
+        <button id="addActivityBtn">Add Activity</button>
+    </form>
+    <input class="backBtn" name="action" type="submit" value="Back" onclick="window.history.back();"/> 
 </body>
-</html>
+</html> 
