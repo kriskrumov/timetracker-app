@@ -10,6 +10,8 @@
 <body>
     <h1>You are logged in as <%= currentUser.username %></h1>
 
+<div>
+    <label>Create a household?</label>
 <label>Create a household?</label>
 <div id="createHouseForm">
     <form action="/home" method="POST">
@@ -26,7 +28,6 @@
             <option id="addressValue"><%= household.address%>, <%= household.city %></option> 
        <% }) %>
     </select>
-    <button>Save</button>
 </div>
 <main>
     <h1>Households</h1>
@@ -40,11 +41,6 @@
         </a>
     <% }) %>
 </main>
-
-<a href="/home/getall">
-    <p>Get all households?</p>
-</a>
-
 <a href="/profile">
     <p>View your profile</p>
 </a>

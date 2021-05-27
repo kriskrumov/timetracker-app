@@ -96,6 +96,7 @@ exports.getAddressPage = (req, res) => {
 
 exports.createHousehold = (req,res) => {
     const user = req.user;
+    const errors = req.flash().error || [];
     const currentUser = req.user._id;
     var household = new Household({
         _id: new mongoose.Types.ObjectId,
@@ -106,26 +107,32 @@ exports.createHousehold = (req,res) => {
         username: req.user.username
     })
 
-    console.log('debugging the object', JSON.stringify(household))
+    console.log('debugging the object', JSON.stringify(household), "addreessss: ", household.address)
 
-    household
-    .save()
-    .then(doc=>{
-        const result = {
-            ID: doc._id,
-            address: doc.address,
-            city: doc.city,
-            postcode: doc.postcode,
-            userID: doc.userID,
-            username: req.user.username
-        }
-        return res.redirect("/home")
-    })
-    .catch((err)=>{
-        if(err){
-            return console.log('address couldnt be added. Error message: ', err)
-        }
-    })
+    if(household.address === '' || household.city === '' || household.postcode === ''){
+        res.redirect('/home');   
+    }
+
+    else{
+        household
+        .save()
+        .then(doc=>{
+            const result = {
+                ID: doc._id,
+                address: doc.address,
+                city: doc.city,
+                postcode: doc.postcode,
+                userID: doc.userID,
+                username: req.user.username
+            }
+            return res.redirect("/home", {errors})
+        })
+        .catch((err)=>{
+            if(err){
+                return console.log('address couldnt be added. Error message: ', err)
+            }
+        })
+    }
 }
 
 // gets all households
@@ -145,7 +152,7 @@ exports.getAllHouseholds = (req,res)=>{
                 console.log('HOUSEHOOOOLD: ', household)
             })
         }
-        return res.redirect("/home")
+        //return res.redirect("/home")
     })
     .catch((err)=>{
         if(err){
@@ -238,28 +245,40 @@ exports.createActivity = (req, res) => {
         userID: currentUser,
         householdID: house
     })
+    if(activity.title === '' || activity.endDate === ''){
+        console.log('cannot create activity')
+    }
+    else{
+        activity
+        .save()
+        .then(doc=>{
+            const result = {
+                ID: doc._id,
+                title: doc.title,
+                description: doc.description,
+                startDate: doc.startDate,
+                userID: doc.userID,
+                householdID: doc.householdID
+            }
+            return res.redirect("/home")
+        })
+        .catch((err)=>{
+            if(err){
+                return console.log('activity couldnt be added. Error message: ', err)
+            }
+        })
+    }
+}
 
-    console.log("HHOUSE: " + house)
-    console.log("USERAA: " + user)
-    console.log('debugging the object: ', JSON.stringify(activity))
-
-    activity
-    .save()
-    .then(doc=>{
-        const result = {
-            ID: doc._id,
-            title: doc.title,
-            description: doc.description,
-            startDate: doc.startDate,
-            userID: doc.userID,
-            householdID: doc.householdID
-        }
-        return res.redirect("/home")
-    })
-    .catch((err)=>{
+exports.deleteActivityForHousehold = (req,res) =>{
+    var activityID = req.params.ActivityID;
+    Activity.findByIdAndRemove(activityID, (err)=>{
         if(err){
-            return console.log('activity couldnt be added. Error message: ', err)
+            console.log('oops could not delete activity. Error: ', err)
+        }
+        else{
+            console.log('deleted actiity wth id: ', activityID);
+            res.redirect('/home');
         }
     })
-    
 }

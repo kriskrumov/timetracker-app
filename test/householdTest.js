@@ -5,6 +5,7 @@ const app = require('../app');
 const { db } = require('../models/household');
 const should = chai.should();
 const Household = require('../models/household');
+const User = require('../models/user');
 
 chai.use(chaiHttp);
 
@@ -32,6 +33,31 @@ describe('household (home) router', ()=>{
             res.should.have.status(200);
             // should.exist([_household.userID, _household.username]);
             done();
+        })
+    })
+})
+
+describe('get all households', ()=>{
+    var loginUser;
+    beforeEach(()=>{
+        loginUser = new User({
+            username: "jesse",
+            password: "1234"
+        })
+    })
+    it('should get all households', (done)=>{
+        chai.request(app)
+        .post('/')
+        .send(loginUser)
+        .then(()=>{
+            chai.request(app)
+            .get('/home/getall')
+            .send()
+            .end((err, res)=>{
+                res.should.have.status(200);
+                res.should.be.a('object');
+                done();
+            })
         })
     })
 })
