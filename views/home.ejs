@@ -12,6 +12,8 @@
 
 <div>
     <label>Create a household?</label>
+<label>Create a household?</label>
+<div id="createHouseForm">
     <form action="/home" method="POST">
         <input type="text" name="address" placeholder="Address"></input>
         <input type="text" name="city" placeholder="City"></input>
@@ -28,7 +30,7 @@
     </select>
 </div>
 <main>
-    <h1>Existing Households</h1>
+    <h1>Households</h1>
     <% households.forEach(function(household){ %>
         <a href="/home/<%= household._id %>">
         <div class="householdContainer">

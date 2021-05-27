@@ -1,4 +1,5 @@
-.loginForm {
+.loginForm,
+.regForm {
   text-align: center;
   background: white;
   width: 300px;
@@ -7,14 +8,17 @@
   border-radius: 33px; }
 
 .loginForm,
-button {
+.regForm,
+#logUserBtn {
   font-size: 16px;
   background-color: #dad8d8;
   border-radius: 8px;
   display: block;
-  margin: 10px auto 5px auto; }
+  margin: 10px auto 5px auto;
+  padding: 5px; }
 
-#projectName {
+#projectName,
+#regName {
   text-align: center;
   font-size: 3em;
   color: #1b1b1b;

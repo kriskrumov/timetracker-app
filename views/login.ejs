@@ -13,13 +13,9 @@
         <form action="/" method="POST">
             <input type="text" name="username" placeholder="Username">
             <input type="password" name="password" placeholder="Password">
-            <% for(let i=0; i<errors.length; i++) { %>
-                <li style="font-weight: bold"><%= errors[i] %></li>
-            <% } %>
-            <button>Login</button>
+            <button id="logUserBtn">Login</button>
         </form>
         <a id='registerLink' href="/register">Sign Up!</a>
     </div>
-
 </body>
 </html>
