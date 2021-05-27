@@ -25,7 +25,6 @@
 
 .activityItem,
 .activitiesItem,
-.householdName,
 th{
   border: 1px solid black;
   text-align: center;
@@ -60,7 +59,7 @@ th{
   padding-top: 80px;
   padding: 10px;
   border: 0;
-  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06); }
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
   color: blue; 
 }
 
