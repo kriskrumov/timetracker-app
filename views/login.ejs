@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Roommate Login</title>
     <link rel="stylesheet" type="text/css" href="../styles/css/style.css"/>
 </head>
 <body>
@@ -13,13 +13,13 @@
         <form action="/" method="POST">
             <input type="text" name="username" placeholder="Username">
             <input type="password" name="password" placeholder="Password">
+            <% for(let i=0; i<errors.length; i++) { %>
+                <li style="font-weight: bold"><%= errors[i] %></li>
+            <% } %>
             <button>Login</button>
         </form>
+        <a id='registerLink' href="/register">Sign Up!</a>
     </div>
-<% for(let i=0; i<errors.length; i++) { %>
-    <li style="font-weight: bold"><%= errors[i] %></li>
-<% } %>
 
-<li id="regLink"><a href="/register">Sign Up!</a></li>
 </body>
 </html>

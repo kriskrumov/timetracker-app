@@ -18,7 +18,7 @@ describe("register", ()=>{
             email: "mochatestmail@gmail.com"
         })
     })
-    describe("register()", (done)=>{
+    describe("register()", ()=>{
         it('should post a new user', (done)=>{
             chai.request(app)
             .post('/register')
@@ -50,7 +50,15 @@ describe("login()", ()=>{
         .send(testUser)
         .end((err, res)=>{
             res.should.have.status(200);
+            res.should.be.a('object');
             done();
         })
+    })
+})
+
+describe('delete', ()=>{
+    it('should delete a user', (done)=>{
+        chai.request(app)
+        .delete('')
     })
 })

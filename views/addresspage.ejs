@@ -8,26 +8,45 @@
     <link rel="stylesheet" type="text/css" href="../styles/css/style.css"/>
 </head>
 <body>
-    <h1><%= house.address %></h1>
-<h1><%= house.username %></h1>
-
+    <div>
+        <h1>Address: <%= house.address %>, <%= house.city %>, <%= house.postcode %></h1>
+        <h1>Household members: <%= house.username %></h1>
+    </div>
 
 <div>
     <form action="/home/<%= house._id %>?_method=PUT" method="POST">
-        <button>Join</button>
+        <button>Join Household</button>
     </form>
 </div>
 
 <div>
+    <h1>Household activities:</h1>
     <% activities.forEach(function(activity){ %>
-        <h4>Title: <%= activity.title %>,</h4>
-        <h4>Description: <%= activity.description %></h4>
-        <h4>StartTime: <%= activity.startDate %></h4>
-        <h4>EndTime: <%= activity.endDate %></h4>
-        <h4>UserID: <%= activity.userID %></h4>
-        <h4>HouseholdID: <%= activity.householdID %></h4>
-        
-
+        <div>
+            <div id='activityItem'>
+                <table id='activitiesTable'>
+                    <tr class="activitiesItem"><b>ID</b></tr>
+                    <tr class="activitiesItem"><b>Title</b></tr>
+                    <tr class="activitiesItem"><b>Description</b></tr>
+                    <tr class="activitiesItem"><b>Start Date</b></tr>
+                    <tr class="activitiesItem"><b>End Date</b></tr>
+                    <td><%= activity.ActivityID %></td>
+                    <td><%= activity.title %></td>
+                    <td><%= activity.description %></td>
+                    <td><%= activity.startDate %></td>
+                    <td><%= activity.endDate %></td>
+                    <form action="/home/<%= house._id%>?_method=DELETE" method="POST">
+                        <button>Delete Activity</button>
+                    </form>
+                </table>
+            </div>
+            <!-- <h4>Title: <%= activity.title %>,</h4>
+            <h4>Description: <%= activity.description %></h4>
+            <h4>StartTime: <%= activity.startDate %></h4>
+            <h4>EndTime: <%= activity.endDate %></h4>
+            <h4>UserID: <%= activity.userID %></h4>
+            <h4>HouseholdID: <%= activity.householdID %></h4> -->
+        </div>
     <% }) %>
 </div>
 
