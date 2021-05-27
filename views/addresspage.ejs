@@ -50,9 +50,9 @@
     <% }) %>
 </div>
 
-<div>
-      <a href="/home/<%= house._id %>/activities">Add activity</a>
-</div>
+<form action="/home/<%= house._id %>/activities" method="GET">
+     <button>Add activity</button>
+</form>
 </body>
 </html>
 

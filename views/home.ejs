@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../styles/css/style.css"/>
 </head>
 <body>
-    <h1>You are logged in as <%= currentUser.username %></h1>
+    <h1>Welcome <%= currentUser.username %></h1>
 
 <div>
     <label>Create a household?</label>
@@ -20,14 +20,6 @@
         <input type="text" name="postcode" placeholder="Postcode"></input>
         <button>Create</button>
     </form>
-</div>
-<div>
-    <select>
-        <option>Select Existing Address</option>
-        <% households.forEach(function(household){ %>
-            <option id="addressValue"><%= household.address%>, <%= household.city %></option> 
-       <% }) %>
-    </select>
 </div>
 <main>
     <h1>Households</h1>

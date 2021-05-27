@@ -14,8 +14,7 @@
   background-color: #dad8d8;
   border-radius: 8px;
   display: block;
-  margin: 10px auto 5px auto;
-  padding: 5px; }
+  margin: 10px auto 5px auto; }
 
 #projectName,
 #regName {
@@ -24,11 +23,16 @@
   color: #1b1b1b;
   margin-top: 10%; }
 
-#registerLink {
-  
-  text-align: center; 
-}
+#regLink {
+  text-align: center;
+  color: blue; }
 
-.activitiesItem{
-  
-}
+#createHouseForm {
+  display: block;
+  width: 200px;
+  margin: 5px;
+  float: right;
+  padding-top: 80px;
+  padding: 10px;
+  border: 0;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06); }
