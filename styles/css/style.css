@@ -5,30 +5,62 @@
   width: 300px;
   margin: 1% auto 0 auto;
   padding: 20px 20px 20px 20px;
-  border-radius: 33px; }
+  border-radius: 33px; 
+}
 
 .loginForm,
 .regForm,
+.joinHouseholdBtn,
+.deleteActivityBtn,
+.addActivityBtn,
+.backBtn,
+#openHouseholdBtn,
 #logUserBtn {
   font-size: 16px;
-  background-color: #dad8d8;
+  background-color: #c5c5c5;
   border-radius: 8px;
   display: block;
-  margin: 10px auto 5px auto;
-  padding: 5px; }
+  margin: 10px auto 5px auto; 
+}
+
+.activityItem,
+.activitiesItem,
+.householdName,
+th{
+  border: 1px solid black;
+  text-align: center;
+}
+
+#activitiesTable, 
+#addressTable {
+  width: 60%;
+  border-collapse: collapse;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 #projectName,
 #regName {
   text-align: center;
   font-size: 3em;
   color: #1b1b1b;
-  margin-top: 10%; }
-
-#registerLink {
-  
-  text-align: center; 
+  margin-top: 10%; 
 }
 
-.activitiesItem{
-  
+#regLink {
+  text-align: center;
+  color: blue; 
 }
+
+  .profilePageHeadings,
+  .householdContainer {
+    text-align: center;
+  }
+
+  .homeGreetingMessage,
+  .currentHousehold,
+  .currentHouseholdMembers,
+  .allHouseholdActivites {
+    text-align: center;
+  }

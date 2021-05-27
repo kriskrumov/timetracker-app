@@ -8,19 +8,32 @@
     <link rel="stylesheet" type="text/css" href="../styles/css/style.css"/>
 </head>
 <body>
-    <h1>Hi, <%= currentUser.username%></h1>
+    <h1 class="profilePageHeadings">Hi, <%= currentUser.username%></h1>
 
-<h2>These are your current registered households:</h2>
+    <h2 class="profilePageHeadings">These are your current registered households:</h2>
 
-<% usersHousehold.forEach(function(household){ %>
-    <div class="householdContainer">
-            <h4 style="display: inline;"  id="householdName"><%= household.address %>, </h4>
-            <h4 style="display: inline;" id="householdName"><%= household.city %>, </h4>
-            <h4 style="display: inline;" id="householdName"><%= household.postcode %></h4>
-            <form id="openAddress" action="/home/<%= household._id %>">
-                <button>Open</button>
-            </form>
-    </div>
-<% }) %>
+<table id='addressTable'>
+    <tr>
+        <th>Address</th>
+        <th>City</th>
+        <th>Post code</th>
+    </tr>
+    <tr>
+
+    <% usersHousehold.forEach(function(household){ %>
+        <div class="householdContainer">
+            <td class="householdName"><%= household.address %></td>
+            <td class="householdName"><%= household.city %></td>
+            <td class="householdName"><%= household.postcode %></td>
+            <td>
+                <form id="openAddress" action="/home/<%= household._id %>">
+                    <button id="openHouseholdBtn">Open</button>
+                </form>
+            </td>
+        </tr>
+        </div>
+    <% }) %>
+</table>
+<input class="backBtn" name="action" type="submit" value="Back" onclick="window.history.back();"/> 
 </body>
 </html>
