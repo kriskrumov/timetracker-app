@@ -9,50 +9,46 @@
 </head>
 <body>
     <div>
-        <h1>Address: <%= house.address %>, <%= house.city %>, <%= house.postcode %></h1>
-        <h1>Household members: <%= house.username %></h1>
+        <h1 class="currentHousehold"><%= house.address %>, <%= house.city %>, <%= house.postcode %></h1>
+        <h1 class="currentHouseholdMembers">Household members: <%= house.username %></h1>
     </div>
 
 <div>
     <form action="/home/<%= house._id %>?_method=PUT" method="POST">
-        <button>Join Household</button>
+        <button class="joinHouseholdBtn">Join Household</button>
     </form>
 </div>
 
-<div>
-    <h1>Household activities:</h1>
-    <% activities.forEach(function(activity){ %>
-        <div>
-            <div id='activityItem'>
-                <table id='activitiesTable'>
-                    <tr class="activitiesItem"><b>ID</b></tr>
-                    <tr class="activitiesItem"><b>Title</b></tr>
-                    <tr class="activitiesItem"><b>Description</b></tr>
-                    <tr class="activitiesItem"><b>Start Date</b></tr>
-                    <tr class="activitiesItem"><b>End Date</b></tr>
-                    <td><%= activity.ActivityID %></td>
-                    <td><%= activity.title %></td>
-                    <td><%= activity.description %></td>
-                    <td><%= activity.startDate %></td>
-                    <td><%= activity.endDate %></td>
+<h1 class="allHouseholdActivites">Household activities:</h1>
+<table id='activitiesTable'>
+<tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+</tr>
+<% activities.forEach(function(activity){ %>
+        <div id='activityItem'>
+                <td class="activitiesItem"><%= activity.title %></td>
+                <td class="activitiesItem"><%= activity.description %></td>
+                <td class="activitiesItem"><%= activity.startDate %></td>
+                <td class="activitiesItem"><%= activity.endDate %></td>
+                <td>
                     <form action="/home/<%= house._id%>?_method=DELETE" method="POST">
-                        <button>Delete Activity</button>
+                        <button class="deleteActivityBtn">Delete Activity</button>
                     </form>
-                </table>
-            </div>
-            <!-- <h4>Title: <%= activity.title %>,</h4>
-            <h4>Description: <%= activity.description %></h4>
-            <h4>StartTime: <%= activity.startDate %></h4>
-            <h4>EndTime: <%= activity.endDate %></h4>
-            <h4>UserID: <%= activity.userID %></h4>
-            <h4>HouseholdID: <%= activity.householdID %></h4> -->
+                </td>
+            </tr>
         </div>
-    <% }) %>
-</div>
+<% }) %>
+</table>
 
-<form action="/home/<%= house._id %>/activities" method="GET">
-     <button>Add activity</button>
-</form>
+<div>
+    <form action="/home/<%= house._id %>/activities" method="GET">
+        <button class="addActivityBtn">Add activity</button>
+   </form>
+   <input class="backBtn" name="action" type="submit" value="Back" onclick="window.history.back();"/> 
+</div>
 </body>
 </html>
 
