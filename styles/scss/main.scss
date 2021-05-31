@@ -1,24 +1,56 @@
-// LOGIN PAGE
 .loginForm,
 .regForm {
   text-align: center;
   background: white;
   width: 300px;
+  height: 200px;
   margin: 1% auto 0 auto;
-  padding: 20px 20px 20px 20px;
-  border-radius: 33px;
+  padding: 50px;
+  border-radius: 30px; 
+  box-sizing: border-box;
+}
+
+#username {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+#password {
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 .loginForm,
 .regForm,
 .joinHouseholdBtn,
 .deleteActivityBtn,
+.addActivityBtn,
+.backBtn,
+#openHouseholdBtn,
 #logUserBtn {
   font-size: 16px;
-  background-color: #972d2d;
+  background-color: #c5c5c5;
   border-radius: 8px;
   display: block;
-  margin: 10px auto 5px auto;
+  margin: 10px auto 5px auto; 
+}
+
+.activityItem,
+.activitiesItem,
+.householdName,
+th{
+  border: 1px solid black;
+  text-align: center;
+}
+
+#activitiesTable, 
+#addressTable
+ {
+  width: 60%;
+  border-collapse: collapse;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #projectName,
@@ -26,19 +58,12 @@
   text-align: center;
   font-size: 3em;
   color: #1b1b1b;
-  margin-top: 10%;
+  margin-top: 10%; 
 }
 
 #regLink {
   text-align: center;
-  color: blue;
-}
-
-// REGISTER PAGE
-
-// HOME PAGE
-#createHousePage {
-}
+  color: blue; }
 
 #createHouseForm {
   display: block;
@@ -49,4 +74,17 @@
   padding: 10px;
   border: 0;
   box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+  color: blue; 
 }
+
+  .profilePageHeadings,
+  .householdContainer {
+    text-align: center;
+  }
+
+  .homeGreetingMessage,
+  .currentHousehold,
+  .currentHouseholdMembers,
+  .allHouseholdActivites {
+    text-align: center;
+  }

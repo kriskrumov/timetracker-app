@@ -12,10 +12,10 @@ describe("register", ()=>{
 
     beforeEach(()=>{
         testUser = new User({
-            username: "mochaTestUsername",
+            username: "mochaTestUsername23",
             name: "test testov",
             password: "12345678",
-            email: "mochatestmail@gmail.com"
+            email: "mochatest@gmail.com"
         })
     })
     describe("register()", ()=>{
@@ -28,6 +28,7 @@ describe("register", ()=>{
                 testUser.save(done)
                 res.should.have.status(200);
                 should.not.exist(testUser.group_id);
+                res.should.be.a('object');
                 done();
             })
         })

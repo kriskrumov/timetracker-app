@@ -26,7 +26,6 @@ exports.getLoginPage = (req,res)=>{
 exports.logout = (req,res)=>{
     req.logOut();
     res.redirect('/');
-    console.log('u just logged out broda')
 }
 
 exports.isLoggedIn = (req,res,next)=>{

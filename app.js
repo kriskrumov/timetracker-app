@@ -62,7 +62,7 @@ app.use('/register', registerRoute);
 
 app.use('/logout', logoutRoute);
 
-app.use('/profile', profileRoute);
+app.use('/profile', isLoggedIn, profileRoute);
 
 
 

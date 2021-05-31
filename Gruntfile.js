@@ -16,7 +16,6 @@ module.exports = function(grunt){
         }
     })
 
-
     // Load Plugins
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-sass');

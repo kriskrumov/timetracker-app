@@ -109,31 +109,27 @@ exports.createHousehold = (req,res) => {
 
     console.log('debugging the object', JSON.stringify(household), "addreessss: ", household.address)
 
-    if(household.address === '' || household.city === '' || household.postcode === ''){
-        res.redirect('/home');   
-    }
+    household
+    .save()
+    .then(doc=>{
+        const result = {
+            ID: doc._id,
+            address: doc.address,
+            city: doc.city,
+            postcode: doc.postcode,
+            userID: doc.userID,
+            username: req.user.username
+        }
+        return res.redirect("/home")
+    })
 
-    else{
-        household
-        .save()
-        .then(doc=>{
-            const result = {
-                ID: doc._id,
-                address: doc.address,
-                city: doc.city,
-                postcode: doc.postcode,
-                userID: doc.userID,
-                username: req.user.username
-            }
-            return res.redirect("/home", {errors})
-        })
-        .catch((err)=>{
-            if(err){
-                return console.log('address couldnt be added. Error message: ', err)
-            }
-        })
-    }
+    .catch((err)=>{
+        if(err){
+            return console.log('address couldnt be added. Error message: ', err)
+        }
+    })
 }
+
 
 // gets all households
 
