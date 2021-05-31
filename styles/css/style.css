@@ -3,10 +3,19 @@
   text-align: center;
   background: white;
   width: 300px;
+  height: 200px;
   margin: 1% auto 0 auto;
-  padding: 20px 20px 20px 20px;
-  border-radius: 33px; 
-}
+  padding: 50px;
+  border-radius: 30px;
+  box-sizing: border-box; }
+
+#username {
+  margin-bottom: 20px;
+  width: 100%; }
+
+#password {
+  width: 100%;
+  margin-bottom: 10px; }
 
 .loginForm,
 .regForm,
@@ -20,32 +29,29 @@
   background-color: #c5c5c5;
   border-radius: 8px;
   display: block;
-  margin: 10px auto 5px auto; 
-}
+  margin: 10px auto 5px auto; }
 
 .activityItem,
 .activitiesItem,
-th{
+.householdName,
+th {
   border: 1px solid black;
-  text-align: center;
-}
+  text-align: center; }
 
-#activitiesTable, 
+#activitiesTable,
 #addressTable {
   width: 60%;
   border-collapse: collapse;
   text-align: center;
   margin-left: auto;
-  margin-right: auto;
-}
+  margin-right: auto; }
 
 #projectName,
 #regName {
   text-align: center;
   font-size: 3em;
   color: #1b1b1b;
-  margin-top: 10%; 
-}
+  margin-top: 10%; }
 
 #regLink {
   text-align: center;
@@ -60,17 +66,14 @@ th{
   padding: 10px;
   border: 0;
   box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
-  color: blue; 
-}
+  color: blue; }
 
-  .profilePageHeadings,
-  .householdContainer {
-    text-align: center;
-  }
+.profilePageHeadings,
+.householdContainer {
+  text-align: center; }
 
-  .homeGreetingMessage,
-  .currentHousehold,
-  .currentHouseholdMembers,
-  .allHouseholdActivites {
-    text-align: center;
-  }
+.homeGreetingMessage,
+.currentHousehold,
+.currentHouseholdMembers,
+.allHouseholdActivites {
+  text-align: center; }
