@@ -7,21 +7,27 @@
     <title>Home</title>
     <link rel="stylesheet" type="text/css" href="../styles/css/style.css"/>
 </head>
+<div class="homeHeader">
+        <div class="headerLeft">
+            <ul class="nav_list">
+                <a class="" href="/profile">View your profile</a>
+                <a href="/logout">Logout</a>
+            </ul>
+        </div>
+</div>
 <body>
-    <h1 class="homeGreetingMessage">Welcome <%= currentUser.username %></h1>
-<div>
-    <label>Create a household?</label>
-<label>Create a household?</label>
+    <h1 class="headerMessage">Welcome <%= currentUser.username %></h1>
 <div id="createHouseForm">
+    <h5 class="createHouseholdLbl">Create a household?</h5>
     <form action="/home" method="POST">
         <input type="text" name="address" placeholder="Address"></input>
         <input type="text" name="city" placeholder="City"></input>
         <input type="text" name="postcode" placeholder="Postcode"></input>
-        <button>Create</button>
+        <button class="createHouseholdBtn">Create</button>
     </form>
 </div>
 <main>
-    <h1>All households</h1>
+    <h1 class="headerMessage">All households</h1>
     <% households.forEach(function(household){ %>
         <a href="/home/<%= household._id %>">
         <div class="householdContainer">
@@ -32,10 +38,5 @@
         </a>
     <% }) %>
 </main>
-<a href="/profile">
-    <p>View your profile</p>
-</a>
-
-<li><a href="/logout">Logout</a></li>
 </body>
 </html>
