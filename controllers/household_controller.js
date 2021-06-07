@@ -256,7 +256,7 @@ exports.createActivity = (req, res) => {
                 userID: doc.userID,
                 householdID: doc.householdID
             }
-            return res.redirect("/home")
+            return res.redirect("/profile")
         })
         .catch((err)=>{
             if(err){
@@ -266,15 +266,15 @@ exports.createActivity = (req, res) => {
     }
 }
 
-exports.deleteActivityForHousehold = (req,res) =>{
-    var activityID = req.params.ActivityID;
+exports.deleteActivity = (req,res) =>{
+    var activityID = req.body.ActivityID
     Activity.findByIdAndRemove(activityID, (err)=>{
         if(err){
             console.log('oops could not delete activity. Error: ', err)
         }
         else{
             console.log('deleted actiity wth id: ', activityID);
-            res.redirect('/home');
+            return res.redirect('/home');
         }
     })
 }

@@ -9,6 +9,14 @@
     <link rel="stylesheet" type="text/css" href="../styles/css/style.css"/>
 </head>
 <body>
+    <div class="homeHeader">
+        <div class="headerLeft">
+            <ul class="nav_list">
+                <a href="/profile">View your profile</a>
+                <a href="/logout">Logout</a>
+            </ul>
+        </div>
+</div>
     <form action="/home/<%= house %>/activities" method="POST">
         <input type="text" name="title" placeholder="Title"></input>
         <input type="text" name="description" placeholder="Description"></input>

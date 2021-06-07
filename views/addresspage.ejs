@@ -4,15 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Household</title>
     <link rel="stylesheet" type="text/css" href="../styles/css/style.css"/>
 </head>
 <body>
+    <div class="homeHeader">
+        <div class="headerLeft">
+            <ul class="nav_list">
+                <a href="/profile">View your profile</a>
+                <a href="/logout">Logout</a>
+            </ul>
+        </div>
+</div>
     <div>
         <h1 class="currentHousehold"><%= house.address %>, <%= house.city %>, <%= house.postcode %></h1>
         <h1 class="currentHouseholdMembers">Household members: <%= house.username %></h1>
     </div>
-
 <div>
     <form action="/home/<%= house._id %>?_method=PUT" method="POST">
         <button class="joinHouseholdBtn">Join Household</button>
@@ -28,7 +35,7 @@
 </tr>
 <% activities.forEach(function(activity){ %>
         <div id='activityItem'>
-                <td class="activitiesItem"><%= activity.title %></td>
+                <td class="activitiesItem"><%= activity.title%></td>
                 <td class="activitiesItem"><%= activity.description %></td>
                 <td class="activitiesItem"><%= activity.startDate %></td>
                 <td class="activitiesItem"><%= activity.endDate %></td>
@@ -50,4 +57,3 @@
 </div>
 </body>
 </html>
-

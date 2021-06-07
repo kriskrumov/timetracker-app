@@ -32,6 +32,6 @@ router.get('/:id/activities', householdController.getActivityPage);
 
 router.post('/:id/activities', householdController.createActivity);
 
-router.delete('/:id/:ActivityID', householdController.deleteActivityForHousehold);
+router.delete('/:id/', householdController.deleteActivity);
 
 module.exports = router;

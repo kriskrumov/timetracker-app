@@ -4,10 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>User Profile</title>
     <link rel="stylesheet" type="text/css" href="../styles/css/style.css"/>
 </head>
 <body>
+    <div class="homeHeader">
+        <div class="headerLeft">
+            <ul class="nav_list">
+                <a href="/profile">View your profile</a>
+                <a href="/logout">Logout</a>
+            </ul>
+        </div>
+</div>
     <h1 class="profilePageHeadings">Hi, <%= currentUser.username%></h1>
 
     <h2 class="profilePageHeadings">These are your current registered households:</h2>
