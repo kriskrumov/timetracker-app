@@ -7,35 +7,33 @@ const expect = chai.expect;
 const should = chai.should();
 chai.use(chaiHttp); 
 
-describe("register", ()=>{
+describe("REGISTER user", ()=>{
     var testUser;
 
-    beforeEach(()=>{
+    beforeEach((done)=>{
         testUser = new User({
-            username: "mochaTestUsername23",
-            name: "test testov",
-            password: "12345678",
-            email: "mochatest@gmail.com"
+            username: "mochaTestUsername123",
+            name: "Test Tester",
+            password: "123456TEST",
+            email: "mochatest@test.com"
         })
+        testUser.save(done);
     })
-    describe("register()", ()=>{
-        it('should post a new user', (done)=>{
-            chai.request(app)
-            .post('/register')
-            .set('content-type', 'application/json')
-            .send(testUser)
-            .end((err, res)=>{
-                testUser.save(done)
-                res.should.have.status(200);
-                should.not.exist(testUser.group_id);
-                res.should.be.a('object');
-                done();
-            })
+    it('Should create a new user', (done)=>{
+        chai.request(app)
+        .post('/register')
+        .set('content-type', 'application/json')
+        .send(testUser)
+        .end((err, res)=>{
+            res.should.have.status(200);
+            should.not.exist(testUser.group_id);
+            res.should.be.a('object');
+            done();
         })
     })
 })
 
-describe("login()", ()=>{
+describe("LOGIN user", ()=>{
     var testUser;
     beforeEach(()=>{
         testUser = new User({
@@ -44,7 +42,7 @@ describe("login()", ()=>{
         })
     })
 
-    it("should login user", (done)=>{
+    it("Should login user", (done)=>{
         chai.request(app)
         .post('/')
         .set('content-type', 'application/json')
@@ -54,12 +52,5 @@ describe("login()", ()=>{
             res.should.be.a('object');
             done();
         })
-    })
-})
-
-describe('delete', ()=>{
-    it('should delete a user', (done)=>{
-        chai.request(app)
-        .delete('')
     })
 })
