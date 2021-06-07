@@ -1,50 +1,37 @@
+
 $primary-color: rgba(134, 132, 132, 0.39);
 $secondary-color: rgba(48, 48, 48, 0.39);
 
-.loginForm,
-.regForm {
-  text-align: center;
-  width: 300px;
-  height: 200px;
-  margin: 1% auto 0 auto;
-  padding: 50px;
-  border-radius: 30px;
-  box-sizing: border-box;
-}
-
 #username {
   margin-bottom: 20px;
-  width: 100%;
-}
+  width: 100%; }
 
 #password {
   width: 100%;
-  margin-bottom: 10px;
-}
+  margin-bottom: 10px; }
 
-.loginForm,
-.regForm,
 .joinHouseholdBtn,
 .deleteActivityBtn,
 .addActivityBtn,
 .backBtn,
 #openHouseholdBtn,
 #logUserBtn,
-.createHouseholdBtn {
+
+#registerBtn,
+.createHouseholdBtn
+{
   font-size: 16px;
   background-color: $primary-color;
   border-radius: 8px;
   display: block;
-  margin: 10px auto 5px auto;
-}
+  margin: 10px auto 5px auto; }
 
 .activityItem,
 .activitiesItem,
 .householdName,
 th {
   border: 1px solid black;
-  text-align: center;
-}
+  text-align: center; }
 
 #activitiesTable,
 #addressTable {
@@ -52,16 +39,14 @@ th {
   border-collapse: collapse;
   text-align: center;
   margin-left: auto;
-  margin-right: auto;
-}
+  margin-right: auto; }
 
 #projectName,
 #regName {
   text-align: center;
   font-size: 3em;
   color: #1b1b1b;
-  margin-top: 10%;
-}
+  margin-top: 10%; }
 
 #regLink {
   text-align: center;
@@ -76,7 +61,7 @@ th {
   text-align: center;
   width: 230px;
   margin: auto;
-  width: 50%;
+  width:50%;
   padding-top: 80px;
   padding: 10px;
   box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
@@ -84,16 +69,15 @@ th {
 
 .profilePageHeadings,
 .householdContainer {
-  text-align: center;
-}
+  text-align: center; }
 
 .headerMessage,
 .currentHousehold,
 .currentHouseholdMembers,
 .allHouseholdActivites,
 .createHouseholdLbl {
-  text-align: center;
-}
+  text-align: center; }
+
 
 /* header */
 
@@ -103,13 +87,14 @@ th {
   padding: 10px;
 }
 
-.homeHeader a {
-  float: left;
+
+.homeHeader a{
+  float: right;
   color: black;
   text-align: center;
   padding: 12px;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 18px; 
   line-height: 25px;
   border-radius: 4px;
 }
@@ -122,3 +107,43 @@ th {
 .headerLeft {
   float: left;
 }
+
+
+.registerInput{
+  width: 100%;
+  margin-top: -20px;
+  margin-bottom: 10px;
+}
+
+.regForm{
+  text-align: center;
+  background: white;
+  width: 320px;
+  height: 240px;
+  margin: 1% auto 0 auto;
+  padding: 50px;
+  border-radius: 30px;
+  box-sizing: border-box; 
+  font-size: 16px;
+  background-color: #c5c5c5;
+  border-radius: 8px;
+  display: block;
+  margin: 10px auto 5px auto;
+}
+
+.loginForm{
+  text-align: center;
+  background: white;
+  width: 280px;
+  height: 190px;
+  margin: 1% auto 0 auto;
+  padding: 50px;
+  border-radius: 30px;
+  box-sizing: border-box; 
+  font-size: 16px;
+  background-color: #c5c5c5;
+  border-radius: 8px;
+  display: block;
+  margin: 10px auto 5px auto;
+}
+

@@ -1,12 +1,3 @@
-.loginForm,
-.regForm {
-  text-align: center;
-  width: 300px;
-  height: 200px;
-  margin: 1% auto 0 auto;
-  padding: 50px;
-  border-radius: 30px;
-  box-sizing: border-box; }
 
 #username {
   margin-bottom: 20px;
@@ -16,14 +7,14 @@
   width: 100%;
   margin-bottom: 10px; }
 
-.loginForm,
-.regForm,
 .joinHouseholdBtn,
 .deleteActivityBtn,
 .addActivityBtn,
 .backBtn,
 #openHouseholdBtn,
 #logUserBtn,
+
+#registerBtn,
 .createHouseholdBtn {
   font-size: 16px;
   background-color: rgba(134, 132, 132, 0.39);
@@ -88,7 +79,7 @@ th {
   padding: 10px; }
 
 .homeHeader a {
-  float: left;
+  float: right;
   color: black;
   text-align: center;
   padding: 12px;
@@ -103,3 +94,38 @@ th {
 
 .headerLeft {
   float: left; }
+
+.registerInput {
+  width: 100%;
+  margin-top: -20px;
+  margin-bottom: 10px; }
+
+.regForm {
+  text-align: center;
+  background: white;
+  width: 320px;
+  height: 240px;
+  margin: 1% auto 0 auto;
+  padding: 50px;
+  border-radius: 30px;
+  box-sizing: border-box;
+  font-size: 16px;
+  background-color: #c5c5c5;
+  border-radius: 8px;
+  display: block;
+  margin: 10px auto 5px auto; }
+
+.loginForm {
+  text-align: center;
+  background: white;
+  width: 280px;
+  height: 190px;
+  margin: 1% auto 0 auto;
+  padding: 50px;
+  border-radius: 30px;
+  box-sizing: border-box;
+  font-size: 16px;
+  background-color: #c5c5c5;
+  border-radius: 8px;
+  display: block;
+  margin: 10px auto 5px auto; }

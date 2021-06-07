@@ -4,24 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Register</title>
     <link rel="stylesheet" type="text/css" href="../styles/css/style.css"/>
 </head>
 <body>
-    <h1 id="regName">Register Page</h1>
+    <h1 id="regName">Roommate Registration</h1>
     <div class="regForm">
         <form action="/register" method="POST">
-            <label>Username: </label>
-            <input type="text" name="username" placeholder="Username">
-            <label>Password: </label>
-            <input type="password" name="password" placeholder="Password">
-            <label>Name: </label>
-            <input type="text" name="name" placeholder="Name">
-            <label>Email: </label>
-            <input type="email" name="email" placeholder="Email">
-            <button>Submit</button>
+            <input class="registerInput" type="text" name="username" placeholder="Username">
+            <input class="registerInput" type="text" name="name" placeholder="Name">
+            <input class="registerInput" type="email" name="email" placeholder="Email">
+            <input class="registerInput" type="password" name="password" placeholder="Password">
+            <button id="registerBtn">Register</button>
         </form>
+        <a href="/">Login</a>
     </div>
-<li><a href="/">Sign In!</a></li>
 </body>
 </html>
