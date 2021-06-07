@@ -22,24 +22,16 @@ exports.getHome = (req,res) => {
 exports.joinHouseHold = (req,res) => {
     const currentAddress = req.params.id;
     const currentUser = req.user;
-   // const currentUsername = req.user.username; 
     Household.findById(req.params.id).populate('userID')
      
      .exec(function(err, newUser){
          if(err){
-             console.log("ADDDDDDDDDDRESA" + currentAddress)
-             console.log("USERAAAAAAA" + currentUser._id)
-            console.log("inasg hregshak: ", err)
+            console.log("you have an error, Log: ", err)
          }  
         else{
-            console.log('DURRENT USERBAE: ', currentUser.username);
-
             newUser.userID.push(currentUser._id), 
             newUser.username.push(currentUser.username)
             newUser.save();
-            console.log("Idto na addresa " + currentAddress)
-            console.log("Obekta " + newUser)
-            console.log("Lognatiq user e " + currentUser)
         }
     });
 }
