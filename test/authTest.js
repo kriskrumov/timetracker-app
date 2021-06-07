@@ -3,7 +3,6 @@ const chaiHttp = require('chai-http');
 const app = require('../app');
 const mongoose = require('mongoose');
 const User = mongoose.model("User");
-const expect = chai.expect;
 const should = chai.should();
 chai.use(chaiHttp); 
 

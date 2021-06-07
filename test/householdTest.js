@@ -2,7 +2,6 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const mongoose = require('mongoose');
 const app = require('../app');
-const { db } = require('../models/household');
 const should = chai.should();
 const Household = require('../models/household');
 const User = require('../models/user');
@@ -10,8 +9,6 @@ const User = require('../models/user');
 chai.use(chaiHttp);
 
 describe('POST Household', ()=>{
-
-    var householdCollection;
     var _household;
 
     beforeEach((done)=>{

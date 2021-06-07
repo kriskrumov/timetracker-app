@@ -1,23 +1,23 @@
+// libraries and constants
+
 const Household = require('../models/household')
 const Activity = require('../models/activity')
 const mongoose = require('mongoose');
-const User = require('../models/user');
-const { response } = require('express');
 
 // Gets the homepage for the currently logged in user
 
 exports.getHome = (req,res) => {
     const currentUserID = req.user._id;
-    console.log("current user ID: ", currentUserID)
     Household.find({userID : {$ne : currentUserID}} , function(err, houseHold){
         if(err){
             console.log(err);
         } else {
             res.render("home", {currentUser: req.user, households: houseHold});
-            console.log("household: ",houseHold);
         }
     })
 }
+
+// A user joins a household (create/post request)
 
 exports.joinHouseHold = (req,res) => {
     const currentAddress = req.params.id;
@@ -36,24 +36,26 @@ exports.joinHouseHold = (req,res) => {
     });
 }
 
+// get EJS addresspage (household)
+
 exports.getUserAddresPage = (req,res) => {
     const currentUserId = req.user._id;
-    const currentUser = req.user.address;
     Household.find({"userID" : currentUserId} , function(err, houseHold){
         if(err){
-            console.log(err);
+            console.log("Error while loading the addressPage (household). Log: ", err);
         } else {
             res.render("profile", {currentUser: req.user, usersHousehold: houseHold});
-            console.log("household: ", houseHold);
         }
     })
 }
+
+// get EJS household page, display all activities for that particular household
 
 exports.getAddressPage = (req, res) => {
     const household_id = req.params.id;
     Household.findById(household_id).exec(function(err, foundAddress){
         if(err){
-            console.log(err);
+            console.log('Error finding a household on specified ID. Log: ', err);
         } else {
             var allActivities = [];
             Activity.find({'householdID': household_id})
@@ -73,13 +75,11 @@ exports.getAddressPage = (req, res) => {
                     allActivities.push(result);
                 })
                 }
-                console.log('ALL HOUSEHOLD ACTIVITIES:   ', allActivities);
                 return res.render("addresspage", {house: foundAddress, activities: allActivities});
             })
             .catch((err)=>{
-                console.log('big problems: ', err)
+                console.log('Error fetching activities for household. Log: ', err)
             })
-            console.log('ALL HOUSEHOLD ACTIVITIES:   ', response);
         }
     })
 }
@@ -99,7 +99,7 @@ exports.createHousehold = (req,res) => {
         username: req.user.username
     })
 
-    console.log('debugging the object', JSON.stringify(household), "addreessss: ", household.address)
+    // save household to Mongo
 
     household
     .save()
@@ -117,7 +117,7 @@ exports.createHousehold = (req,res) => {
 
     .catch((err)=>{
         if(err){
-            return console.log('address couldnt be added. Error message: ', err)
+            return console.log('Address couldnt be added. Error message: ', err)
         }
     })
 }
@@ -137,14 +137,12 @@ exports.getAllHouseholds = (req,res)=>{
                     city: doc.city,
                     postcode: doc.postcode
                 }
-                console.log('HOUSEHOOOOLD: ', household)
             })
         }
-        //return res.redirect("/home")
     })
     .catch((err)=>{
         if(err){
-            return console.log('addresses couldnt be loaded. Error message: ', err)
+            return console.log('Addresses couldnt be loaded. Error message: ', err)
         }
     })
 }
@@ -157,7 +155,6 @@ exports.getAllHouseholdsPerUser = (req,res) =>{
     Household.find({'userID': currentUser._id}) 
     .select()
     .then(docs=>{
-        console.log("Currently logged user ID: ", currentUser._id)
         const response = {
             NEhouseholds: docs.map(doc=>{
                 const result = {
@@ -167,15 +164,13 @@ exports.getAllHouseholdsPerUser = (req,res) =>{
                     postcode: doc.postcode,
                     userID: doc.userID
                 }
-                console.log('household data which '+currentUser.username+' is NOT a part of: ' , result);
             })
         }
         return res.redirect('/profile')
     })
     .catch((err)=>{
         if(err){
-            console.log('error message: ', err)
-            return console.log('couldnt get all household per user with ID: ', currentUser)
+            console.log('Error getting all household for user. Log: ', err)
         }
     })
 }
@@ -184,12 +179,10 @@ exports.getAllHouseholdsPerUser = (req,res) =>{
 
 exports.getAllNEHouseholdsPerUser = (req,res) =>{
     const currentUser = req.user;
-    console.log('current user')
     Household.find({'userID': {$ne: currentUser._id}}) 
     .select()
     .then(docs=>{
         var notexistinghouseholds = [];
-        console.log("Currently logged user ID: ", currentUser._id)
         const response = {
             NEhouseholds: docs.map(doc=>{
                 const result = {
@@ -200,7 +193,6 @@ exports.getAllNEHouseholdsPerUser = (req,res) =>{
                     userID: doc.userID
                 }
                 notexistinghouseholds.push(result);
-                console.log('household data which '+currentUser.username+' is NOT a part of: ' , result);
             })
         }
         res.render("home", {allHouses: doc})
@@ -208,17 +200,20 @@ exports.getAllNEHouseholdsPerUser = (req,res) =>{
     })
     .catch((err)=>{
         if(err){
-            console.log('error message: ', err)
-            return console.log('couldnt get all household per user with ID: ', currentUser)
+            console.log('Error getting all households a user is NOT a part of. Log: ', err)
         }
     })
 }
+
+// get EJS create activity page
 
 exports.getActivityPage = (req, res) => {
     const address = req.params.id;
     const currentUser = req.user;
     return res.render("activity", {user: currentUser, house: address});
 }
+
+// create an activity for a household
 
 exports.createActivity = (req, res) => {
     const user = req.user;
@@ -234,7 +229,7 @@ exports.createActivity = (req, res) => {
         householdID: house
     })
     if(activity.title === '' || activity.endDate === ''){
-        console.log('cannot create activity')
+        console.log('Cannot create activity. Missing data')
     }
     else{
         activity
@@ -252,20 +247,22 @@ exports.createActivity = (req, res) => {
         })
         .catch((err)=>{
             if(err){
-                return console.log('activity couldnt be added. Error message: ', err)
+                return console.log('Activity couldnt be created. Error message: ', err)
             }
         })
     }
 }
 
+// delete and activity (in production)
+
 exports.deleteActivity = (req,res) =>{
     var activityID = req.body.ActivityID
     Activity.findByIdAndRemove(activityID, (err)=>{
         if(err){
-            console.log('oops could not delete activity. Error: ', err)
+            console.log('Oops could not delete activity. Error: ', err)
         }
         else{
-            console.log('deleted actiity wth id: ', activityID);
+            console.log('Deleted actiity wth id: ', activityID);
             return res.redirect('/home');
         }
     })
