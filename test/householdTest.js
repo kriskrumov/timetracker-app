@@ -51,6 +51,7 @@ describe('GET all households', ()=>{
             .send()
             .end((err, res)=>{
                 res.should.have.status(200);
+                console.log('respnse: ', res);
                 res.should.be.a('object');
                 done();
             })
