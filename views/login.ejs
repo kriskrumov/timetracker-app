@@ -16,6 +16,9 @@
             <button id="logUserBtn">Login</button>
         </form>
         <a id='registerLink' href="/register">Sign Up!</a>
+        <% for(let i=0; i<errors.length; i++) { %>
+            <p style="font-weight: bold"><%= errors[i] %></p>
+        <% } %>
     </div>
 </body>
 </html>

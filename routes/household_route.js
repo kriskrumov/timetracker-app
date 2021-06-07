@@ -1,3 +1,5 @@
+// libraries and constants
+
 const express = require('express');
 const router = express.Router();
 const authController = require('../controllers/authentication_controller');
@@ -24,13 +26,23 @@ router.get('/nehouseholds', householdController.getAllNEHouseholdsPerUser);
 
 router.post("/", householdController.createHousehold);
 
+// get EJS addresspage (household)
+
 router.get("/:id", householdController.getAddressPage);
+
+// join a household 
 
 router.post('/:id', householdController.joinHouseHold);
 
+// get activities for a household
+
 router.get('/:id/activities', householdController.getActivityPage);
 
+// create activity for household
+
 router.post('/:id/activities', householdController.createActivity);
+
+// delete a household (in production)
 
 router.delete('/:id/', householdController.deleteActivity);
 

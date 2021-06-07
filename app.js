@@ -1,4 +1,4 @@
-// Libraries
+// Libraries and constants
 
 const connectDB = require('./db/db');
 const express = require("express");
@@ -9,14 +9,12 @@ const User = require("./models/user");
 const session = require('express-session');
 const flash = require('connect-flash');
 const morgan = require('morgan');
+const app = express();
+const port = process.env.PORT || 3003;
 
-
-// Consts and variables
+// connect the application to the MongoDB cloud database
 
 connectDB();
-const app = express();
-
-const port = process.env.PORT || 3003;
 
 // Routes Consts 
 
@@ -27,8 +25,8 @@ const profileRoute = require('./routes/profile_route');
 const registerRoute = require('./routes/register_route');
 const { isLoggedIn } = require('./controllers/authentication_controller');
 
-
 // Middleware
+
 app.use("/styles", express.static(__dirname + "/styles"));
 app.use(morgan('dev'))
 app.set('view engine', 'ejs');
@@ -41,7 +39,6 @@ app.use((session)({
     resave: false,
     saveUninitialized: false
 }));
-
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -64,10 +61,7 @@ app.use('/logout', logoutRoute);
 
 app.use('/profile', isLoggedIn, profileRoute);
 
-
-
 // Starts server and start listening for connections on specified port
-
 
 app.listen(port, function(){
     console.log("Server started...visit http://localhost:"+port);
