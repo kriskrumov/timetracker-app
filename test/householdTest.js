@@ -9,7 +9,7 @@ const User = require('../models/user');
 
 chai.use(chaiHttp);
 
-describe('household (home) router', ()=>{
+describe('POST Household', ()=>{
 
     var householdCollection;
     var _household;
@@ -17,27 +17,26 @@ describe('household (home) router', ()=>{
     beforeEach((done)=>{
         _household = new Household({
             _id:new mongoose.Types.ObjectId,
-            address: 'Nov put 612',
-            city: 'Aalborg',
-            postcode: '9000'
+            address: 'MochaTest Household 33',
+            city: 'Copenhagen',
+            postcode: '2100'
         })
         _household.save(done)
     })
 
-    it('should create a new household', (done)=>{
+    it('Should create a new household', (done)=>{
         chai.request(app)
         .post('/home')
         .set('content-type', 'application/json')
         .send(_household)
         .end((err, res)=>{
             res.should.have.status(200);
-            // should.exist([_household.userID, _household.username]);
             done();
         })
     })
 })
 
-describe('get all households', ()=>{
+describe('GET all households', ()=>{
     var loginUser;
     beforeEach(()=>{
         loginUser = new User({
@@ -45,7 +44,7 @@ describe('get all households', ()=>{
             password: "1234"
         })
     })
-    it('should get all households', (done)=>{
+    it('Should get all households', (done)=>{
         chai.request(app)
         .post('/')
         .send(loginUser)
