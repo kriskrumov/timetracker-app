@@ -31,8 +31,8 @@
     <% households.forEach(function(household){ %>
         <a href="/home/<%= household._id %>">
         <div class="householdContainer">
-                <h4 style="display: inline;"  id="householdName"><%= household.address %></h4>
-                <h4 style="display: inline;" id="householdName"><%= household.city %></h4>
+                <h4 style="display: inline;"  id="householdName"><%= household.address %>,</h4>
+                <h4 style="display: inline;" id="householdName"><%= household.city %>,</h4>
                 <h4 style="display: inline;" id="householdName"><%= household.postcode %></h4>             
         </div>
         </a>
