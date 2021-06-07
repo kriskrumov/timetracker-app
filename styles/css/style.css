@@ -1,3 +1,4 @@
+
 #username {
   margin-bottom: 20px;
   width: 100%; }
@@ -12,10 +13,11 @@
 .backBtn,
 #openHouseholdBtn,
 #logUserBtn,
+
 #registerBtn,
 .createHouseholdBtn {
   font-size: 16px;
-  background-color: #c5c5c5;
+  background-color: rgba(134, 132, 132, 0.39);
   border-radius: 8px;
   display: block;
   margin: 10px auto 5px auto; }
