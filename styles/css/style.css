@@ -130,3 +130,18 @@ th {
   border-radius: 8px;
   display: block;
   margin: 10px auto 5px auto; }
+
+.createActivityForm {
+  text-align: center;
+  background: white;
+  width: 320px;
+  height: 240px;
+  margin: 1% auto 0 auto;
+  padding: 50px;
+  border-radius: 30px;
+  box-sizing: border-box;
+  font-size: 16px;
+  background-color: rgba(123, 158, 233, 0.388);
+  border-radius: 8px;
+  display: block;
+  margin: 10px auto 5px auto; }

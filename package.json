@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "sass": "node-sass styles/scss/main.scss styles/css/style.css -w",
-    "start": "nodemon app.js",
+    "start": "mocha && nodemon app.js",
     "test": "mocha"
   },
   "author": "",
@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "chai": "^4.3.4",
+    "electron": "^13.1.1",
     "grunt": "^1.4.0",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-sass": "^3.1.0",

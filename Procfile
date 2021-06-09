@@ -1,1 +1,1 @@
-web: node app.js
+web: mocha && node app.js
